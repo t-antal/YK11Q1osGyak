@@ -1,4 +1,4 @@
-	#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -13,7 +13,7 @@ int main()
     int n, x, y, fd1, fd2;
     mknod("YK11Q1", S_IFIFO | 0666, 0);
     char buffer[100];
-    fd1 = open("YK11Q1", O_RDWR);
+    fd1 = open("YK11Q1", O_WRONLY);
     FILE *fbe;
     if ((fbe = fopen("be.txt", "r")) == NULL)
     {
@@ -27,9 +27,7 @@ int main()
         write(fd1, &x, sizeof(x));
         write(fd1, &y, sizeof(y));
     }
-    fclose(fbe);
-
-    fd2 = open("YK11Q1", O_RDWR);
+    fd2 = open("YK11Q1", O_RDONLY);
     FILE *fki;
     fki = fopen("ki.txt", "w");
     for(int i = 0; i < n; i++)
@@ -39,6 +37,7 @@ int main()
     	fprintf(fki,"%d %d %d\n", x, y, lnko(x,y));
     	
     }
+    fclose(fbe);
     fclose(fki);
     close(fd1);
     close(fd2);
