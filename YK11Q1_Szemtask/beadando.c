@@ -17,7 +17,7 @@ int main()
     FILE *fbe;
     if ((fbe = fopen("be.txt", "r")) == NULL)
     {
-    	printf("ERROR");
+    	printf("Error at input!");
     	exit(1);
     }
     fscanf(fbe, "%d", &n);
